@@ -1,0 +1,66 @@
+We understand that the member should have the same access as visitor but can access archive as an addition.
+
+L: Yes, that is correct.
+
+Does this mean after the user logs in, he should still be able to see the login and registration since these two are also 
+in the list of what the visitors will be seeing?
+
+L:Good question. No, once a user is logged in, the registration and login pages should not be available. Instead, they should 
+see a logout option. This applies to both members and authors.
+
+We’re a bit confused about this since normally the user won’t be able to access log in if he hasn’t logged out (we have a logout
+option) and since he’s logged in, he shouldn’t be registering (this option is normally for the new user (which is a visitor))?
+
+L:Yes, your reasoning is spot on. Hopefully my answer above clears this up.
+
+
+//confirm setup
+
+At the moment our visitor is seeing:
+
+Homepage 
+
+About 
+
+Registration
+
+Login
+
+L: Good
+
+
+Our member after logging in is seeing 
+
+Homepage 
+
+About 
+
+Logout 
+
+Archive
+
+L:Good
+
+
+Author
+
+Homepage 
+
+About 
+
+Logout 
+
+Archive
+
+Create Post
+
+L:Good
+
+
+The only other thing you might need to factor in is access for any additional pages added as part of additional 
+features/embellishments. The access for these is largely up to your group, though it is likely that additional 
+pages would be restricted to member and/or author roles.
+
+
+
+

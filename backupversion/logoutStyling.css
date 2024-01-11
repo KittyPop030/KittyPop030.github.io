@@ -1,0 +1,23 @@
+/* CSS styling for the footer */
+/* Made this CSS a different class cause i was getting confused in style.css */
+/* this file has been merged with the style.css and appended the welcome massage to the header section. added at the very bottom*/
+
+footer {
+    color: rgb(0, 0, 0);
+    text-align: left;
+    position: fixed;
+    bottom: 230px;
+    right: 0;
+    left: 0;
+}
+
+.user-greeting {
+    display: inline-block;
+    padding: 8px 16px;
+    /* Adjust padding as needed */
+    background-color: #2a9da3d1;
+    color: #fff;
+    /* Text color inside the shape */
+    border-radius: 20px;
+    /* Create a rounded rectangle */
+}

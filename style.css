@@ -1,0 +1,1462 @@
+/* declare variables and set colour for easy swapping*/
+:root {
+    --background-color: ghostwhite;
+    --default-font: 'Segoe UI', Tahoma, "Roboto Light", Calibri, sans-serif;
+    --navigation-bar-background-colour: #1c99a1;
+    --navigation-bar-border: 1px solid #000000;
+    --navigation-bar-text-colour: #FFFAFA;
+    --navigation-bar-active-colour: #2e1960;
+    --centered-header-background-colour: rgba(55, 114, 118, 0.6);
+    --body-text-colour: black;
+    --hover-colour: #006bb3;
+    --post-box-background: lightblue;
+    --post-box-shadow: 10px 10px 20px -3px black;
+    --post-read-more-text-colour: black;
+    --post-label-background: #1c99a1;
+    --post-label-shadow: 8px 5px 11px -4px rgba(0, 0, 0, 0.9);
+    --page-background-image: url("images/white-waves.png");
+    --button-default-background-colour: #1c99a1;
+    --colour-authour-and-date: rgba(0, 170, 255, 0.29);
+    --arrow-color: rgba(218, 221, 222, 0.9);
+    --scroll-to-top-button-border: 4px black;
+    --scroll-to-top-button-shadow: -1px -1px 27px 8px rgba(104, 236, 242, 0.83);
+    --nav-collapsible-tab-border: none;
+    --home-page-image-hover-shadow: 0px 0px 15px 10px rgba(104, 236, 242, 0.83);
+    --archive-read-more-button-hover: linear-gradient(109.6deg, rgba(156, 252, 248, 1) 11.2%, rgba(110, 123, 251, 1) 91.1%);
+    /*--login-form-border: 2px solid rgba(0, 170, 255, 0.29);*/
+    /*disabled*/
+    --form-container-background: lightblue;
+    --cancel-button-colour: linear-gradient(316deg, #99201c 0%, #f56545 74%);
+    --cancel-button-hover-colour: linear-gradient(to right, #fc5c7d, #6a82fb);
+    --input-field-background-colour: white;
+    --comment-background-colour: rgba(55, 114, 118, 0.3);
+    --rate-background-colour: rgba(55, 114, 118, 0.8);
+}
+
+/* list of attributes for swapping*/
+.dark-mode {
+    --background-color: #21202f;
+    --default-font: 'Segoe UI', Tahoma, "Roboto Light", Calibri, sans-serif;
+    --navigation-bar-background-colour: #21202f;
+    --navigation-bar-border: 1px solid black;
+    --navigation-bar-text-colour: #FFFAFA;
+    --navigation-bar-active-colour: #2e1960;
+    --centered-header-background-colour: rgba(0, 0, 38, 0.4);
+    --body-text-colour: #FFFAFA;
+    --hover-colour: #3e3154;
+    --post-box-background: #404040;
+    --post-box-shadow: 10px 10px 20px -3px rgba(146, 141, 166, 1);
+    --post-read-more-text-colour: white;
+    --post-label-background: #001a4d;
+    --post-label-shadow: 8px 5px 11px -4px rgba(146, 141, 166, 1);
+    --page-background-image: null;
+    --button-default-background-colour: rgba(12, 11, 42, 1);
+    --colour-authour-and-date: rgba(79, 80, 84, 0.91);
+    --arrow-color: #F5F5DC;
+    --scroll-to-top-button-border: 1px solid #534c4c;
+    --scroll-to-top-button-shadow: -1px -1px 27px 9px rgba(251, 251, 251, 0.75);
+    --nav-collapsible-tab-border: 1px solid white;
+    --home-page-image-hover-shadow: 0px 0px 13px 9px rgba(242, 237, 233, 0.72);
+    --archive-read-more-button-hover: #001a4d;
+    --login-form-border: 1px solid white;
+    --form-container-background: rgba(71, 71, 77, 0.59);
+    --cancel-button-colour: linear-gradient(to right, #870000, #190a05);
+    --cancel-button-hover-colour: linear-gradient(147deg, #e0455f 0%, #44000b 74%);
+    --input-field-background-colour: #5e5d68;
+    --comment-background-colour: rgba(0, 0, 38, 0.3);
+    --rate-background-colour: rgba(23, 5, 41, 1);
+}
+
+/* dark mode switches*/
+#switch {
+    cursor: pointer;
+    width: 40px;
+    position: absolute;
+    top: 40px;
+    left: 300px;
+    height: auto;
+    z-index: 100;
+}
+
+.displayMode {
+    cursor: pointer;
+    width: 40px;
+    position: absolute;
+    top: 45px;
+    left: 360px;
+    height: auto;
+    color: white;
+    pointer-events: none;
+    /*make the element not clickable*/
+}
+
+body {
+    background-color: var(--background-color);
+    background-image: var(--page-background-image);
+    color: var(--body-text-colour);
+    margin: 0;
+    padding: 0;
+    font-family: var(--default-font);
+    position: relative;
+}
+
+/* fix the gap at the top*/
+#start {
+    position: absolute;
+}
+
+/* scrolling behaviour*/
+html {
+    scroll-behavior: smooth;
+}
+
+/* position the scroll-to-top button*/
+.scroll {
+    position: fixed;
+    bottom: 60px;
+    right: 65px;
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+/*hover scroll to top button effect*/
+.scroll :hover {
+    box-shadow: var(--scroll-to-top-button-shadow);
+    cursor: pointer;
+}
+
+#scroll-to-top.showButton:hover {
+    box-shadow: var(--scroll-to-top-button-shadow);
+    cursor: pointer;
+
+}
+
+.scroll-to-top-button {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    border: var(--scroll-to-top-button-border);
+    opacity: 0;
+    visibility: hidden;
+    /*hide the button initially*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s, visibility 0.8s;
+    /*adjust the value for duration of the button transition*/
+    cursor: pointer;
+}
+
+.scroll-to-top-button.showButton {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* scroll to top arrow */
+#arrow {
+    transform: rotate(-90deg);
+    font-size: 40px;
+    color: var(--arrow-color);
+    pointer-events: none;
+    margin: 0;
+}
+
+/* Full-width inputs */
+input[type=text],
+input[type=password] {
+    color: var(--body-text-colour);
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #3b3939;
+    box-sizing: border-box;
+    background-color: var(--input-field-background-colour);
+    /*This sets all the input field background colour except content box under create post*/
+}
+
+/* Style the placeholder element of the input field */
+::placeholder {
+    color: var(--body-text-colour);
+    opacity: 0.6;
+}
+
+textarea::placeholder {
+    color: var(--body-text-colour);
+    opacity: 0.6;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: var(--button-default-background-colour);
+    /*color: #3b3939;*/
+    padding: 14px 20px;
+    margin: 8px 0;
+    /*all the buttons inherit this value and this will affect the sizing. Need to overwrite*/
+    opacity: 0.7;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 3px;
+    /*round the corners*/
+}
+
+.read-more,
+.read-comment,
+.rate-and-comment {
+    padding: 9px 9px;
+    margin-bottom: 4px;
+    background-color: var(--button-default-background-colour);
+}
+
+
+
+/* Add a hover effect for buttons */
+/* button:hover {
+    opacity: 0.8;
+} */
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    color: black;
+    font-weight: bold;
+    background-image: var(--cancel-button-colour);
+    border: grey 1px solid;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Add padding to containers */
+/* adjust to center the form*/
+.container {
+    margin: 2% auto;
+    /* automatically determines the right and left margin */
+    width: 30%;
+    padding: 1.5%;
+    background-color: var(--form-container-background);
+    border-radius: 8px;
+    box-shadow: var(--post-box-shadow);
+    border: var(--login-form-border);
+}
+
+.containerForCreatePost {
+    margin: 3% auto;
+    width: 70%;
+    background-color: var(--form-container-background);
+    border-radius: 8px;
+    box-shadow: var(--post-box-shadow);
+    border: var(--login-form-border);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#createPostForm {
+    padding: 2%;
+}
+
+/*for the sizing of the create post box*/
+#postContent {
+    width: 100%;
+    height: 250px;
+    /*height of the content box. Textarea resizes automatically*/
+    box-sizing: border-box;
+    background-color: var(--input-field-background-colour);
+    margin-top: 10px;
+    color: var(--body-text-colour);
+}
+
+.user-post-review {
+    margin-top: 1vh;
+    width: 100%;
+    box-sizing: border-box;
+    height: 15vh;
+    background-color: var(--input-field-background-colour);
+    color: var(--body-text-colour);
+}
+
+.review-submit-button {
+    width: 10%;
+    float: right;
+    padding: 10px;
+    color: var(--default-font);
+    font-weight: bold;
+}
+
+.container-error-message {
+    color: red;
+}
+
+.error-message-login {
+    color: red;
+}
+
+#forget-password,
+#not-member {
+    color: var(--body-text-colour);
+}
+
+/* The "Forgot password" text */
+.cancelbtn,
+span.psw {
+    display: inline-block;
+    color: var(--body-text-colour);
+}
+
+.cancelbtn:hover {
+    background-image: var(--cancel-button-hover-colour)
+}
+
+span.psw {
+    padding-left: 15px;
+    padding-top: 0;
+}
+
+#register-link {
+    text-decoration: underline;
+}
+
+span.psw a:visited,
+#register-link a:visited,
+.psw a:visited {
+    color: var(--body-text-colour);
+    text-decoration: underline;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+/* 
+* Navigation Bar Styling 
+*/
+/* Removing the bullet points of navigation bar */
+/* Moving Nav bar to top*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #1c98a100;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    /*adjust this value to move the entire navigation bar from left and right-*/
+    transition: transform 800ms ease-out;
+    /*transition when going back to the original state-*/
+    z-index: 100;
+    /*make sure it's on top of every other layers but overlay and background filter*/
+}
+
+ul.collapse {
+    transform: translateX(100%);
+    /*move the nav bar out of the window */
+    transition: transform 3s ease-out;
+    /*transition when collapsing-*/
+}
+
+.collapsible {
+    right: 0;
+    /*make sure it sticks to the right border*/
+    padding: 19px;
+    border: var(--nav-collapsible-tab-border);
+    box-shadow: 0px 1px 4px white;
+    border-top-left-radius: 6px;
+    /*updated to round the border*/
+    border-bottom-left-radius: 6px;
+    /*updated to round the border*/
+    color: var(--navigation-bar-text-colour);
+    position: fixed;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    /*hide the button initially*/
+    transition: opacity 1s, visibility 1s;
+    cursor: pointer;
+}
+
+.collapsible.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 2s, visibility 7s;
+    transition-delay: 600ms;
+    cursor: pointer;
+}
+
+/*value has been updated to make it align with logo */
+li {
+    /* Display the navigation items horizontally */
+    float: right;
+    /*moving tabs to right of nav bar */
+    padding: 12px;
+    margin-top: 24px;
+    background-color: var(--navigation-bar-background-colour);
+    font-size: 16px;
+    border-right: var(--navigation-bar-border);
+}
+
+/*list of item in navigation bar*/
+li:nth-child(1) {
+    box-shadow: 0px 1px 4px white;
+}
+
+li:nth-child(2) {
+    box-shadow: 0px 5px 5px white;
+}
+
+li:nth-child(3) {
+    box-shadow: 0px 5px 5px white;
+}
+
+li:nth-child(4) {
+    box-shadow: 0px 5px 5px white;
+}
+
+li:nth-child(5) {
+    box-shadow: 0px 5px 5px white;
+}
+
+li:nth-child(6) {
+    box-shadow: 0px 1px 4px white;
+    /* border-top-left-radius: 6px; 
+    border-bottom-left-radius: 6px;  */
+}
+
+li:nth-child(7) {
+    box-shadow: 0px 1px 4px white;
+    border-top-left-radius: 6px;
+    /*updated to round the border*/
+    border-bottom-left-radius: 6px;
+}
+
+/* Block spacing*/
+a {
+    display: block;
+    padding: 8px;
+}
+
+/* Navigation Bar Hover Colour */
+li:hover {
+    background-color: var(--hover-colour);
+    color: var(--navigation-bar-text-colour);
+}
+
+li a.active {
+    display: block;
+    background-color: var(--navigation-bar-active-colour);
+    color: var(--navigation-bar-text-colour);
+}
+
+/* add active class to li so it fills the entire block */
+li.active {
+    background-color: var(--navigation-bar-active-colour);
+}
+
+/* added to remove underline of navigation bar items*/
+li a:visited {
+    text-decoration: none;
+    color: var(--navigation-bar-text-colour);
+}
+
+li a:link {
+    text-decoration: none;
+    color: var(--navigation-bar-text-colour);
+}
+
+.image-text-section {
+    text-align: center;
+    position: relative;
+}
+
+.header-image {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+/* adjust the position and the size of logo*/
+#logo {
+    position: absolute;
+    top: 38px;
+    left: 25px;
+    width: 250px;
+    height: auto;
+}
+
+.centered-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: var(--centered-header-background-colour);
+    padding: 8px 13px;
+    color: var(--navigation-bar-text-colour);
+    font-size: 55px;
+    font-weight: bold;
+    box-shadow: -2px 10px 41px -2px antiquewhite;
+    border-radius: 15px;
+}
+
+/* container for the entire blog content*/
+.post-container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 5%;
+    /* margin between header image and the post*/
+    margin-left: 13%;
+    margin-right: 13%;
+}
+
+/* container for the post inside the blog content container*/
+.post-box {
+    display: flex;
+    /*by default, child elements lay out in rows in flex*/
+    background-color: var(--post-box-background);
+    margin-bottom: 5%;
+    box-shadow: var(--post-box-shadow);
+    border-radius: 10px;
+}
+
+.post-image {
+    height: auto;
+    flex-basis: 40%;
+    /*image should take up 40% percent of the entire box space*/
+    cursor: pointer;
+}
+
+.post-image img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    /*occupy full height*/
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    /*round the corner of the image in the post box*/
+    border-bottom-left-radius: 10px;
+    /*round the corner of the image in the post box*/
+    transition: opacity 0.5s;
+}
+
+.post-text {
+    /* height: auto; */
+    padding-left: 30px;
+    flex-basis: 60%;
+    /*content brief should only take up 60% of the post box*/
+    font-size: small;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.read-more,
+.read-comment,
+.rate-and-comment {
+    color: var(--post-read-more-text-colour);
+    font-weight: bold;
+    font-size: small;
+    /* height: 5%; */
+    box-shadow: var(--post-box-shadow);
+    opacity: 0.7;
+}
+
+.read-more:hover,
+.read-comment:hover,
+.rate-comment-post:hover,
+.review-submit-button:hover,
+.mgm-menu:hover,
+.update-status:hover {
+    background: var(--archive-read-more-button-hover);
+}
+
+.title {
+    font-size: x-large;
+    padding-top: 0.1%;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.post-label {
+    margin-bottom: 10px;
+}
+
+.post-label label {
+    background-color: var(--post-label-background);
+    padding: 2px 4px;
+    box-shadow: var(--post-label-shadow);
+    margin-right: 5px;
+    font-size: smaller;
+    border-radius: 3px;
+    opacity: 0.9;
+    font-weight: bold;
+}
+
+.author-and-date {
+    padding-bottom: 1%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.author,
+.rating {
+    padding-right: 3px;
+    /*text-decoration: underline;*/
+    background-color: var(--colour-authour-and-date);
+    border-radius: 3px;
+    font-style: italic;
+    /*font-weight: bold;*/
+}
+
+.rating img {
+    vertical-align: middle;
+    height: 1em;
+    /*same size as current font*/
+    margin-bottom: 3px;
+    margin-left: 2px;
+    transform: skewX(-7deg);
+}
+
+.icon img {
+    vertical-align: middle;
+    height: 1em;
+    /*same size as current font*/
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* margin-left: 1px;  */
+}
+
+.spacing {
+    padding-left: 4px;
+}
+
+.date {
+    padding-left: 3px;
+    /*text-decoration: underline;*/
+    background-color: var(--colour-authour-and-date);
+    border-radius: 3px;
+    font-style: italic;
+}
+
+.archive-description {
+    margin: 1%;
+}
+
+#archive-button {
+    color: var(--post-read-more-text-colour);
+    font-weight: bold;
+    font-size: small;
+    box-shadow: var(--post-box-shadow);
+    opacity: 0.7;
+}
+
+/*create a flex container for archive image and text */
+.archive-reveal-section-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    /*fix the picture not taking up the full height of container */
+    align-content: center;
+
+}
+
+.comment {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: max-height 2s, opacity 1s;
+    margin-top: 3px;
+}
+
+.comment.reveal {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transition: max-height 2s, opacity 1s;
+    font-style: italic;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.comment-text {
+    padding-top: 2px;
+}
+
+h2 {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--comment-background-colour);
+    overflow: hidden;
+}
+
+.commemter {
+    margin: 0;
+    font-weight: bold;
+}
+
+.archive-image,
+.item-content {
+    margin-left: 0.8%;
+    margin-right: 0.8%;
+    flex-basis: 40%;
+    /*text occupy 50% of the text box*/
+    object-fit: cover;
+    visibility: hidden;
+    height: 0;
+    opacity: 0;
+    transition: max-height 2s, opacity 1s;
+   
+    /* margin-top: 10px; */
+}
+
+.mgm-item {
+    margin: 0;
+}
+
+
+.archive-image.reveal {
+    visibility: visible;
+    height: auto;
+    object-fit: cover;
+    opacity: 1;
+    transition: max-height 2s, opacity 1s;
+    flex-basis: 40%;
+    align-items: center;
+}
+
+.item-content.reveal {
+    visibility: visible;
+    height: auto;
+    object-fit: cover;
+    opacity: 1;
+    transition: max-height 2s, opacity 1s;
+    /* flex-basis: 40%; */
+    align-items: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rolebutton{
+    width: fit-content;
+    padding: 10px;
+    color: var(--default-font);
+    font-weight: bold;
+}
+
+.rolerow{
+ 
+    margin: 0;
+}
+
+.roletable{
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    
+}
+
+.archive-image-img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    /*occupy full height*/
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    /*round the corner of the image in the post box*/
+    border-bottom-left-radius: 10px;
+    /*round the corner of the image in the post box*/
+    transition: opacity 0.5s;
+}
+
+.archive-main-content {
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 10s, opacity 2.5s;
+    margin-left: 0.8%;
+    margin-right: 0.8%;
+    flex-basis: 60%;
+    /*text occupy 60% of the text box*/
+    margin-bottom: 2px;
+    /* margin-top: 10px; */
+
+}
+
+.archive-main-content.reveal {
+    max-height: 70vh;
+    overflow-y: auto;
+    /*add scroll bar when overflows*/
+    height: auto;
+    visibility: visible;
+    opacity: 1;
+    /* margin-bottom: 1%; */
+    flex-basis: 60%;
+    margin-top: 17px;
+    margin-bottom: 12px;
+}
+
+#archive-button {
+    margin: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+#archive-button:hover,
+.create-btn:hover,
+.clear-btn:hover,
+#login-submit-button:hover,
+.registerbtn:hover,
+.clearbtn:hover,
+#upload-image:hover {
+    background: var(--archive-read-more-button-hover);
+}
+
+.archive-post-label {
+    margin-bottom: 10px;
+}
+
+.archive-post-label label {
+    background-color: var(--post-label-background);
+    padding: 2px 4px;
+    box-shadow: var(--post-label-shadow);
+    margin-right: 5px;
+    font-size: smaller;
+    border-radius: 3px;
+    opacity: 0.9;
+    font-weight: bold;
+}
+
+.post-box-archive {
+    display: flex;
+    /*by default, child elements lay out in rows in flex*/
+    background-color: var(--post-box-background);
+    margin-bottom: 3%;
+    box-shadow: var(--post-box-shadow);
+    border-radius: 10px;
+}
+
+.post-image img:hover {
+    box-shadow: var(--home-page-image-hover-shadow) !important;
+    /*to fix hovering effect not working*/
+    cursor: pointer;
+}
+
+.archive-image img:hover {
+    box-shadow: var(--home-page-image-hover-shadow) !important;
+    /*to fix hovering effect not working*/
+    cursor: pointer;
+}
+
+/*make the button flex box so that the play icon will always be at the center*/
+.audio_control {
+    cursor: pointer;
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    top: 18px;
+    left: 435px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+#audio-button {
+    width: 20px;
+    height: 20px;
+    padding-right: 30px;
+    padding-bottom: 32px;
+    padding-left: 15px;
+    border: 1px solid white;
+    background-color: black;
+    border-radius: 50%;
+    z-index: 100;
+    margin-left: 2vw;
+    /*added to fix the style*/
+}
+
+#audio-button:hover {
+    box-shadow: var(--scroll-to-top-button-shadow);
+    background-color: black;
+}
+
+/*make the play triangle*/
+.play {
+    width: 0;
+    height: 0;
+    /* margin: 0;
+    padding: 0; */
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 20px solid whitesmoke;
+    transition: background-color 600ms;
+    display: block;
+}
+
+/*pause button*/
+.pause {
+    width: 13px;
+    height: 13px;
+    background-color: rgba(166, 36, 36, 1);
+    padding-top: 3px;
+    padding-left: 2px;
+    padding-bottom: 1px;
+    transition: background-color 600ms;
+}
+
+.create-btn,
+.clear-btn,
+#login-submit-button,
+.registerbtn,
+.clearbtn,
+#upload-image,
+#overlay-exit-button {
+    color: var(--post-read-more-text-colour);
+    font-weight: bold;
+    font-size: small;
+    box-shadow: var(--post-box-shadow);
+    opacity: 0.7;
+    margin-bottom: 2vh;
+}
+
+.clear-image-btn {
+    width: fit-content;
+    background-color: transparent;
+    padding: 0;
+    border-color: transparent;
+    box-shadow: none;
+    margin-left: 2px;
+    margin-bottom: 0;
+    text-decoration: underline;
+    font-size: 12px;
+    color: var(--default-font);
+    margin-top: 2vh;
+}
+
+/*This below section is for styling the overlay after clicking read more button*/
+.overlay-window-content {
+    display: flex;
+    /*Center the content inside the box*/
+    position: fixed;
+    margin-bottom: 8%;
+    bottom: 10vh;
+    background-color: var(--post-box-background);
+    resize: both;
+    border: 1px solid #000;
+    z-index: 5000;
+    /* above everything else */
+    height: 92vh;
+    width: auto;
+    /* adjust */
+    cursor: pointer;
+    border-radius: 12px;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-content: center;
+    left: 5vw;
+    right: 5vw;
+    top: 5vh;
+    visibility: hidden;
+    /*hide initially*/
+    /*to change back*/
+    opacity: 0;
+    /*to change back*/
+    transition: opacity 1s, visibility 1s;
+}
+
+.overlay-window-content.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s, visibility 1s;
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    /*specifying the vertical position*/
+    left: 0;
+    /*specifying the horizontal position*/
+    right: 0;
+    /*specifying the horizontal position*/
+    bottom: 0;
+    /*specifying the vertical position*/
+    z-index: 3000;
+    /* above everything else but pop up box */
+    background-color: rgba(8, 7, 7, 0.4);
+    visibility: hidden;
+    /*hide initially*/
+    opacity: 0;
+}
+
+.background-overlay.on {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s, visibility 1s;
+}
+
+.overlay-window {
+    position: relative;
+}
+
+#overlay-exit-button {
+    position: absolute;
+    left: 86vw;
+    top: 0.8vh;
+    z-index: 5500;
+    height: 40px;
+    /*make it round*/
+    width: 40px;
+    /*make it round*/
+    border-radius: 50%;
+    /*make it round*/
+    border: 1px solid var(--scroll-to-top-button-border);
+    box-shadow: var(--post-box-shadow);
+    margin: 0;
+    padding: 0;
+    font-size: large;
+    cursor: pointer;
+}
+
+.overlay-picture-section {
+    height: auto;
+    flex-basis: 45%;
+    /*image should take up 45% percent of the entire box space*/
+    cursor: pointer;
+}
+
+.overlay-picture-section img {
+    width: 100%;
+    display: block;
+    height: 100%;
+    /*occupy full height*/
+    object-fit: cover;
+    transition: opacity 0.5s;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.overlay-text-section {
+    flex-basis: 55%;
+    /*occupy 60% of the flexbox*/
+    height: auto;
+    overflow: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display: block;
+    margin: 2% auto;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.about-container,
+.story-section,
+.references {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;    
+    
+}
+
+.first-section {
+    border-color: white;
+    /*margin: 3% auto;*/
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    margin-top: 2vh;
+}
+
+.second-section {
+    border-color: white;
+    align-items: center;
+    margin: 3% auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+}
+
+.picture-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 5vh;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+/*set the initial opacity so they're hidden*/
+.student-1,
+.student-2,
+.student-3 {
+    opacity: 0;
+}
+
+/*the below is for revealing student picture one by one*/
+.student-1.reveal {
+    opacity: 1;
+    transition: opacity 1.5s 1s;
+    /*set the time to go from 0-1 and delay*/
+}
+
+.student-2.reveal {
+    opacity: 1;
+    transition: opacity 1.5s 2s;
+}
+
+.student-3.reveal {
+    opacity: 1;
+    transition: opacity 1.5s 3s;
+}
+
+/*the above is for revealing student picture one by one*/
+
+#stu1,
+#stu2,
+#stu3 {
+    margin-left: 1%;
+    text-align: center;
+}
+
+#stu2 img {
+    margin-bottom: 4vh;
+    /*make text beneath todd aligns with other texts due to the size of img being slightly shorter*/
+}
+
+/*text for story section*/
+#story-text {
+    width: 50vw;
+    text-align: center;
+    margin-bottom: 1vh;
+}
+
+.picture-section img {
+    height: auto;
+    width: auto;
+    /*allow resize*/
+    display: block;
+    border-radius: 10px;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.stu-description {
+    text-align: center;
+}
+
+.story-section {
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+#about-us,
+#references {
+    font-weight: bold;
+    font-size: xx-large;
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+}
+
+.sub-item {
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+}
+
+.references a:visited {
+    color: var(--body-text-colour);
+    text-decoration: underline;
+}
+
+.references a {
+    text-decoration: underline;
+    color: var(--body-text-colour);
+}
+
+.permission-message {
+    position: absolute;
+    left: 2vw;
+}
+
+/*new added to formt welcome text*/
+.welcome-text {
+    position: absolute;
+    top: 20%;
+    left: 2vw;
+    /* transform: translate(-50%, -50%); */
+    /* text-align: center;  */
+    color: var(--navigation-bar-text-colour);
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    max-width: 50%;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.advertising {
+    margin-top: 3vh;
+    text-align: center;
+    font-style: italic;
+    font-size: 23px;
+}
+
+.success-message {
+    margin-top: 8vh;
+    text-align: center;
+    font-style: italic;
+    font-size: 23px;
+    margin-bottom: 0;
+}
+
+.archived-comment {
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.archived-comment-heading {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.count {
+    font-style: italic;
+}
+
+.rate-comment-post {
+    /* margin-right: 20px; */
+    float: right;
+    /* display: inline-block; */
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 3px;
+    /* border-color: white; */
+    overflow: hidden;
+    height: 25px;
+    font-style: italic;
+    font-weight: bold;
+    color: var(--default-font);
+    background-color: var(--rate-background-colour);
+    width: fit-content;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.rate-comment-post:hover {
+    box-shadow: var(--home-page-image-hover-shadow);
+}
+
+.submit-post-review {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: max-height 2s, opacity 1s;
+    margin-top: 3px;
+}
+
+.submit-post-review.reveal {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    transition: max-height 2s, opacity 1s;
+    margin-top: 10px;
+}
+
+.review {
+    padding: 30px;
+}
+
+.review-form-title {
+    font-size: 15px;
+    margin-bottom: 5px;
+    width: fit-content;
+    font-weight: bold;
+
+}
+
+.select-rating img {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.archive-post-button {
+    display: inline-block;
+    overflow: hidden;
+    width: fit-content;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--body-text-colour);
+    font-size: 12px;
+    font-weight: bold;
+    background-color: transparent;
+    font-style: italic;
+    font-size: small;
+    text-decoration: underline;
+    margin-bottom: 0;
+    padding: 0;
+    margin-top: 12px;
+}
+
+#unarchive-form,
+#inactive-form,
+#archive-form {
+    margin: 0;
+    display: inline-block;
+}
+
+.mgm-menu {
+    color: var(--default-font);
+    font-weight: bold;
+    /* margin-bottom: 0; */
+    margin-top: 0;
+}
+
+.mgm-container {
+    width: 80%;
+    align-items: center;
+
+}
+
+.mgm-item {
+    padding: 0;
+    align-items: center;
+}
+
+table,
+th,
+td {
+    border: 1px solid;
+    border-collapse: collapse;
+    color: var(--default-font);
+    padding: 2px;
+    align-items: center;
+}
+
+td {
+    font-size: 13px;
+    text-align: center;
+    align-items: center;
+    padding: 2px;
+}
+
+.update-status {
+    align-items: center;
+    width: fit-content;
+    padding: 10px;
+    color: var(--default-font);
+    font-weight: bold;
+}
+
+.not-approved {
+    color: rgb(180, 51, 51);
+    font-weight: bold;
+}
+
+.main-content-manage {
+    font-size: 10px;
+
+}
+
+.titleformat {
+    margin-top: 0;
+    /*fix the gap*/
+
+}
+
+.manage-image {
+    /* display: inline-block; */
+    overflow: hidden;
+    max-width: 100%; 
+ 
+}
+
+.image-container {
+    display: flex;
+    justify-content: start;
+    margin-left: 0;
+    margin-top: 10px;
+    width: 70%;
+    height: 20vh;
+}
+
+.active-button {
+    padding: 0;
+    margin-top: 0;
+}
+
+.active-button2 {
+    padding: 0;
+}
+
+.active-post-button2 {
+    margin-top: 0;
+}
+
+.manage-inactive-form{
+    display: inline-block;
+}
+
+.edit{
+    width: fit-content;
+    overflow: hidden;
+    padding: 0;
+    color: var(--default-font);
+    background-color: transparent;
+}
+
+.edit-form{
+    display: inline-block;
+}
+
+.main-content-manage{
+    font-weight: normal;
+    font-style: normal;
+}
